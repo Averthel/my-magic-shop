@@ -17,10 +17,10 @@ public class Device {
     private String description;
     private int count;
     private double price;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "category_id")
     private Category category;
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(name = "device_customers", joinColumns = {@JoinColumn(name = "device_id", referencedColumnName = "id")},
             inverseJoinColumns = {@JoinColumn(name="customer_id", referencedColumnName="id")})
     private List<Customer> customers = new ArrayList<>();
