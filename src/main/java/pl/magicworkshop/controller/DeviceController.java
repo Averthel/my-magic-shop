@@ -54,7 +54,9 @@ public class DeviceController {
     }
 
     public Device findDeviceById(Long id) {
-        Device device = deviceRepository.findById(id).orElse(null);
+        Device device = deviceRepository.findById(id).orElseThrow(() -> {
+            throw new DeviceNotFoundException("Nie znaleziono urządzenia o wskazanym id");
+        });
         return device;
     }
 
