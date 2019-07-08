@@ -6,5 +6,5 @@ import pl.magicworkshop.model.Customer;
 
 @Repository
 public interface CustomerRepository extends JpaRepository<Customer, Long> {
-    
+
 }
