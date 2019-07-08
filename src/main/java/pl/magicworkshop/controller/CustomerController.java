@@ -1,14 +1,14 @@
 package pl.magicworkshop.controller;
 
-import org.springframework.stereotype.Controller;
-import pl.magicworkshop.Options;
+
+import org.springframework.stereotype.Service;
 import pl.magicworkshop.model.Customer;
 import pl.magicworkshop.repository.CustomerRepository;
 
 import java.util.Optional;
 import java.util.Scanner;
 
-@Controller
+@Service
 public class CustomerController {
 
     private Scanner scanner;

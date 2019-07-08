@@ -1,7 +1,7 @@
 package pl.magicworkshop.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 import pl.magicworkshop.exceptions.RentException;
 import pl.magicworkshop.model.Customer;
 import pl.magicworkshop.model.Device;
@@ -12,7 +12,7 @@ import javax.transaction.Transactional;
 import java.util.Optional;
 import java.util.Scanner;
 
-@Controller
+@Service
 public class RentController {
 
     private Scanner scanner;

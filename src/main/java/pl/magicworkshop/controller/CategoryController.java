@@ -1,7 +1,7 @@
 package pl.magicworkshop.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 import pl.magicworkshop.exceptions.CategoryNotFoundException;
 import pl.magicworkshop.model.Category;
 import pl.magicworkshop.repository.CategoryRepository;
@@ -9,7 +9,7 @@ import pl.magicworkshop.repository.CategoryRepository;
 import java.util.Optional;
 import java.util.Scanner;
 
-@Controller
+@Service
 public class CategoryController {
 
     private Scanner scanner;
@@ -28,8 +28,9 @@ public class CategoryController {
         System.out.println();
         System.out.println("Opis kategorii:");
         category.setDescription(scanner.nextLine());
+        System.out.println("Dodano kategorię");
         categoryRepository.save(category);
-        System.out.println("Urządzenie dodane");
+        System.out.println(category);
     }
 
 
