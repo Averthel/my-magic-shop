@@ -37,8 +37,8 @@ public class RentController {
 
 
     private void rent() {
-        System.out.println("Podaj id klienta: ");
-        Optional<Customer> customer = customerRepository.findById(scanner.nextLong());
+        System.out.println("Podaj pesel klienta: ");
+        Optional<Customer> customer = customerRepository.findByPesel(scanner.nextLine());
         System.out.println("Podaj id urządzenia, które chcesz wypożyczyć: ");
         Optional<Device> device = deviceRepository.findById(scanner.nextLong());
         if (customer.isPresent())

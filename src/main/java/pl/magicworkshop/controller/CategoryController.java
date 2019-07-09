@@ -3,6 +3,7 @@ package pl.magicworkshop.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.magicworkshop.exceptions.CategoryNotFoundException;
+import pl.magicworkshop.exceptions.DataIntegrityViolationException;
 import pl.magicworkshop.model.Category;
 import pl.magicworkshop.repository.CategoryRepository;
 
@@ -23,15 +24,20 @@ public class CategoryController {
 
     public void addCategory() {
         Category category = new Category();
+        try {
         System.out.println("Nazwa kategorii:");
         category.setName(scanner.nextLine());
-        System.out.println();
         System.out.println("Opis kategorii:");
         category.setDescription(scanner.nextLine());
         System.out.println("Dodano kategorię");
         categoryRepository.save(category);
+        }catch (DataIntegrityViolationException e){
+            System.out.println("Operacja nie powiodłą się. Kategoria o podanej nazwie juz istnieje");
+        }
         System.out.println(category);
+
     }
+
 
 
     public void removeCategory(){

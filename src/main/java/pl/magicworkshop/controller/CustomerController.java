@@ -46,9 +46,4 @@ public class CustomerController {
         customer.ifPresentOrElse(customerRepository::delete, () -> System.out.println("Nie udało się usunąć klienta o podanym id"));
     }
 
-    public Customer findCustomerByName(){
-        Customer customer = new Customer();
-
-        return customer;
-    }
 }

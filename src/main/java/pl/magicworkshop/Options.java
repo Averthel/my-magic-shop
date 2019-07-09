@@ -10,7 +10,8 @@ public enum Options {
     REMOVE_DIVCE(5, "Usuń urządzenie"),
     REMOVE_CATEGORY(6, "Usuń urządzenie"),
     REMOVE_CUSTOMER(7, "Usuń klienta"),
-    EXIT(8, "Wyjście");
+    FIND_DEVICE(8, "Wyszukaj urządzenie"),
+    EXIT(9, "Wyjście");
 
     private int numb;
     private String desc;

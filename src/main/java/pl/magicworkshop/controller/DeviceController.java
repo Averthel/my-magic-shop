@@ -13,6 +13,8 @@ import pl.magicworkshop.repository.DeviceRepository;
 import static pl.magicworkshop.util.PrintText.println;
 
 import java.beans.Transient;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
 
@@ -31,7 +33,7 @@ public class DeviceController {
     }
 
     @Transactional
-    public void createDevice(){
+    public void createDevice() {
         try {
             Device device = readDevice();
             deviceRepository.save(device);
@@ -51,12 +53,11 @@ public class DeviceController {
         println("Ilość urządzeń(sztuk): ");
         device.setCount(scanner.nextInt());
         scanner.nextLine();
-        println("Kategoria urządzenia(podaj id):");
-        long categoryId = scanner.nextLong();
-        Optional<Category> category = categoryRepository.findById(categoryId);
-        scanner.nextLine();
+        println("Kategoria urządzenia(podaj nazwe):");
+        String categoryName = scanner.nextLine();
+        Optional<Category> category = categoryRepository.findByNameContainingIgnoreCase(categoryName);
         category.ifPresentOrElse(device::setCategory, () -> {
-            throw new CategoryNotFoundException("Kategoria o podanym ID nie istnieje");
+            throw new CategoryNotFoundException("Kategoria o podanej nazwie nie istnieje");
         });
 
         return device;
@@ -72,11 +73,17 @@ public class DeviceController {
                 });
     }
 
-    public Device findDeviceById(Long id) {
-        Device device = deviceRepository.findById(id).orElseThrow(() -> {
-            throw new DeviceNotFoundException("Nie znaleziono urządzenia o wskazanym id");
-        });
-        return device;
+    public void findDevice() {
+        System.out.println("Podaj nazwe urządzenia, które chcesz wyszukać: ");
+        String deviceName = scanner.nextLine();
+        List<Device> devices = deviceRepository.findAllByNameContainingIgnoreCase(deviceName);
+        if (devices.isEmpty()) {
+            System.out.println("Nie znaleziono urządzń o podanej nazwie");
+        } else {
+            System.out.println("Znaleziono urządzenia: ");
+            devices.forEach(System.out::println);
+        }
     }
-
 }
+
+
